@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Fog.views import home_view
+from Fog.views import login_view, home_view, register_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home_view, name="home_view")
+    path('', login_view, name="login_view"),
+    path('home', home_view, name="home_view"),
+    path('register', register_view, name="register_view"),
 ]
