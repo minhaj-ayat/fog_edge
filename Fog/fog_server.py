@@ -43,9 +43,9 @@ while True:
     # c.send(st.encode())
     received_login_info = c.recv(1024).decode()
     sep_str = received_login_info.split()
-    uid = sep_str[0]
-    pwd = sep_str[1]
-    imsi = sep_str[2]
+    uid = sep_str[1]
+    pwd = sep_str[2]
+    imsi = sep_str[0]
 
     if UserInfo.objects.filter(loginid=uid).exists() and UserInfo.objects.filter(passwd=pwd).exists():
         auth_vector = UserInfo.objects.get(loginid=uid)

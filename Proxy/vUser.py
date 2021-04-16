@@ -1,5 +1,6 @@
 # Import socket module
 import socket
+from vHSS import get_string
 
 # Create a socket object
 s = socket.socket()
@@ -12,9 +13,9 @@ s.connect(('127.0.0.1', port))
 
 # receive data from the server
 # print(s.recv(1024))
-send_login_info = "user1 123 111"
+send_login_info = get_string()
 s.send(send_login_info.encode())
 received_binary = s.recv(1024)
-print(received_binary.decode())
+print("Auth. Vector: " + received_binary.decode())
 # close the connection
 s.close()
