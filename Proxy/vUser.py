@@ -16,6 +16,6 @@ s.connect(('127.0.0.1', port))
 send_login_info = get_string()
 s.send(send_login_info.encode())
 received_binary = s.recv(1024)
-print("Auth. Vector: " + received_binary.decode())
+print("Received Auth. Vector: " + received_binary.decode())
 # close the connection
 s.close()

@@ -9,11 +9,11 @@ from Proxy.models import Mapper
 
 
 def get_string():
-    user_record = Mapper.objects.using('proxydb').get(imsi="111")
+    user_record = Mapper.objects.using('proxydb').get(imsi="111501234512345")
     av = model_to_dict(user_record)
     st = ""
     for key, value in av.items():
         if key != "id":
             st += str(value) + " "
-    print(st)
+    print("ProxyDB Triplet : "+st)
     return st

@@ -42,6 +42,7 @@ while True:
     # st = 'Thank you for connecting'
     # c.send(st.encode())
     received_login_info = c.recv(1024).decode()
+    print("Received info : "+ received_login_info)
     sep_str = received_login_info.split()
     uid = sep_str[1]
     pwd = sep_str[2]
@@ -54,6 +55,7 @@ while True:
         for key, value in av.items():
             if key != "id":
                 st += str(value) + " "
+        print("Sent Auth. vector : "+st)
         c.send(st.encode())
     # Close the connection with the client
     c.close()
