@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7f1d3019-b48d-473f-8774-758a4a96a012" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fog/fog_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fog/fog_server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fog/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proxy/vHSS.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proxy/vHSS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proxy/vUser.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proxy/vUser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proxydb.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/proxydb.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

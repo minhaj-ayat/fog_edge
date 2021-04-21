@@ -53,7 +53,7 @@ while True:
         av = model_to_dict(auth_vector)
         st = ""
         for key, value in av.items():
-            if key != "id":
+            if key == "autn" or key == "rand" or key == "xres" or key == "kasme":
                 st += str(value) + " "
         print("Sent Auth. vector : "+st)
         c.send(st.encode())
