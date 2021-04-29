@@ -1,29 +1,9 @@
 import socket
+from _thread import *
+import threading
 
-ues = socket.socket()
-print("Edge Socket successfully created")
 
-# reserve a port on your computer in our
-# case it is 12345 but it can be anything
-port = 12000
-
-# Next bind to the port
-# we have not typed any ip in the ip field
-# instead we have inputted an empty string
-# this makes the server listen to requests
-# coming from other computers on the network
-ues.bind(('', port))
-print("Edge socket binded to %s" % port)
-
-# put the socket into listening mode
-ues.listen(5)
-print("Edge socket is listening")
-
-while True:
-    # Establish connection with UE.
-    c, addr = ues.accept()
-    print('Got connection from UE', addr)
-
+def threaded(c):
     received_imsi = c.recv(1024).decode()
     print("Received imsi from UE : " + received_imsi)
 
@@ -57,5 +37,35 @@ while True:
     else:
         failure = "Authentication failed"
         c.send(failure.encode())
+
+    print_lock.release()
     # Close the connection with the client
     c.close()
+
+
+print_lock = threading.Lock()
+ues = socket.socket()
+print("Edge Socket successfully created")
+
+# reserve a port on your computer in our
+# case it is 12345 but it can be anything
+port = 12000
+
+# Next bind to the port
+# we have not typed any ip in the ip field
+# instead we have inputted an empty string
+# this makes the server listen to requests
+# coming from other computers on the network
+ues.bind(('', port))
+print("Edge socket binded to %s" % port)
+
+# put the socket into listening mode
+ues.listen(5)
+print("Edge socket is listening")
+
+while True:
+    # Establish connection with UE.
+    cl, addr = ues.accept()
+    print_lock.acquire()
+    print('Got connection from UE', addr)
+    start_new_thread(threaded, (cl,))

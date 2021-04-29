@@ -1,8 +1,10 @@
 import socket
+from _thread import *
+import threading
 from django.forms.models import model_to_dict
 import sys
 
-print(sys.path)
+'''print(sys.path)'''
 import os
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'FogEdge.settings')
@@ -11,6 +13,33 @@ import django
 django.setup()
 from Fog.models import UserInfo
 
+
+def threaded(c):
+    # send a thank you message to the client.
+    # st = 'Thank you for connecting'
+    # c.send(st.encode())
+    received_login_info = c.recv(1024).decode()
+    print("Received info : " + received_login_info)
+    sep_str = received_login_info.split()
+    uid = sep_str[1]
+    pwd = sep_str[2]
+    imsi = sep_str[0]
+
+    if UserInfo.objects.filter(loginid=uid).exists() and UserInfo.objects.filter(passwd=pwd).exists():
+        auth_vector = UserInfo.objects.get(loginid=uid)
+        av = model_to_dict(auth_vector)
+        st = ""
+        for key, value in av.items():
+            if key == "autn" or key == "rand" or key == "xres" or key == "kasme":
+                st += str(value) + " "
+        print("Sent Auth. vector : " + st)
+        print_lock.release()
+        c.send(st.encode())
+    # Close the connection with the client
+    c.close()
+
+
+print_lock = threading.Lock()
 # next create a socket object
 s = socket.socket()
 print("Socket successfully created")
@@ -35,27 +64,7 @@ print("socket is listening")
 # an error occurs
 while True:
     # Establish connection with client.
-    c, addr = s.accept()
+    cl, addr = s.accept()
+    print_lock.acquire()
     print('Got connection from', addr)
-
-    # send a thank you message to the client.
-    # st = 'Thank you for connecting'
-    # c.send(st.encode())
-    received_login_info = c.recv(1024).decode()
-    print("Received info : "+ received_login_info)
-    sep_str = received_login_info.split()
-    uid = sep_str[1]
-    pwd = sep_str[2]
-    imsi = sep_str[0]
-
-    if UserInfo.objects.filter(loginid=uid).exists() and UserInfo.objects.filter(passwd=pwd).exists():
-        auth_vector = UserInfo.objects.get(loginid=uid)
-        av = model_to_dict(auth_vector)
-        st = ""
-        for key, value in av.items():
-            if key == "autn" or key == "rand" or key == "xres" or key == "kasme":
-                st += str(value) + " "
-        print("Sent Auth. vector : "+st)
-        c.send(st.encode())
-    # Close the connection with the client
-    c.close()
+    start_new_thread(threaded, (cl,))
