@@ -1,3 +1,5 @@
+import hashlib
+
 from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -13,9 +15,10 @@ def login_view(request):
 def home_view(request):
     username = request.POST.get('username')
     password = request.POST.get('password')
+    phash = str(hashlib.md5(password.encode()).hexdigest())
     args = {'valid_login': True, 'username': username}
 
-    if UserInfo.objects.filter(loginid=username).exists() and UserInfo.objects.filter(passwd=password).exists():
+    if UserInfo.objects.filter(loginid=username).exists() and UserInfo.objects.filter(passwd=phash).exists():
         return render(request, 'home.html', args)
     else:
         args['valid_login'] = False
@@ -33,7 +36,8 @@ def register_view(request):
                 messages.info(request, 'Username Taken')
                 return redirect('/register')
             else:
-                user = UserInfo.objects.create(loginid=username, passwd=password)
+                phash = str(hashlib.md5(password.encode()).hexdigest())
+                user = UserInfo.objects.create(loginid=username, passwd=phash)
                 user.save()
                 print('user created')
                 return redirect('/')
