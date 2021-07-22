@@ -3,7 +3,7 @@ import socket
 
 mmes = socket.socket()
 # Define the port on which you want to connect
-port = 12000
+port = 13000
 
 # connect to the server on local computer
 mmes.connect(('127.0.0.1', port))

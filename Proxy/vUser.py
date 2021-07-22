@@ -1,13 +1,14 @@
 # Import socket module
+import codecs
 import socket
 from _thread import *
 import threading
 from vHSS import get_string
 
-
 def threaded(c):
-    received_imsi = c.recv(1024).decode()
-    print("Received info : " + received_imsi)
+    received_imsi = c.recv(1024)
+    print(received_imsi)
+    #c.send("Got it".encode())
 
     # Create a socket object
     fogs = socket.socket()
@@ -20,8 +21,8 @@ def threaded(c):
 
     # receive data from the server
     # print(s.recv(1024))
-    send_login_info = get_string(received_imsi)
-    fogs.send(send_login_info.encode())
+    #send_login_info = get_string(received_imsi)
+    fogs.send(received_imsi)
     received_binary = fogs.recv(1024)
     print("Received Auth. Vector from fog : " + received_binary.decode())
     c.send(received_binary)

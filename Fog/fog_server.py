@@ -1,6 +1,7 @@
 import socket
 from _thread import *
 import threading
+from vector_gen import generate_vector, print_buffer2
 from django.forms.models import model_to_dict
 import sys
 
@@ -14,27 +15,44 @@ django.setup()
 from Fog.models import UserInfo
 
 
+
 def threaded(c):
     # send a thank you message to the client.
     # st = 'Thank you for connecting'
     # c.send(st.encode())
-    received_login_info = c.recv(1024).decode()
-    print("Received info : " + received_login_info)
-    sep_str = received_login_info.split()
-    uid = sep_str[1]
-    pwd = sep_str[2]
-    imsi = sep_str[0]
+    received_login_info = c.recv(1024)
+    print(received_login_info)
+    #sep_str = received_login_info.split()
+    #imsi = sep_str[0]
+    #uid = sep_str[1]
+    #pwd = sep_str[2]
+    #key = sep_str[1]
+    #op = sep_str[2]
+    #r = sep_str[3]
+    #sq = sep_str[4]
+    #pl = sep_str[5]
 
-    if UserInfo.objects.filter(loginid=uid).exists() and UserInfo.objects.filter(passwd=pwd).exists():
+
+    '''if UserInfo.objects.filter(loginid=uid).exists() and UserInfo.objects.filter(passwd=pwd).exists():
         auth_vector = UserInfo.objects.get(loginid=uid)
         av = model_to_dict(auth_vector)
         st = ""
         for key, value in av.items():
             if key == "autn" or key == "rand" or key == "xres" or key == "kasme":
-                st += str(value) + " "
-        print("Sent Auth. vector : " + st)
-        print_lock.release()
-        c.send(st.encode())
+                st += str(value) + " " '''
+    #val = generate_vector(key, op, r, sq, pl)
+    #print("Sent Auth. vector : " + st)
+    #print_lock.release()
+    #c.send(st.encode())
+    rrand = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    rxres = [0] * 8
+    rautn = generate_vector(rrand, rxres)
+    rautn = print_buffer2(rautn)
+    rxres = print_buffer2(rxres)
+    print(rautn)
+    print(rxres)
+    reply = rautn + " " + rxres
+    c.send(reply.encode())
     # Close the connection with the client
     c.close()
 
