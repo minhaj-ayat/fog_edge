@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f1d3019-b48d-473f-8774-758a4a96a012" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fog/fog_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fog/fog_server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proxy/vHSS.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proxy/vHSS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proxy/vUser.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proxy/vUser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UE/ue.py" beforeDir="false" afterPath="$PROJECT_DIR$/UE/ue.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fog/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fog/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fog/vector_gen.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fog/vector_gen.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +130,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="visited_mme" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="vector_gen" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="FtoE" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -140,11 +138,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Edge" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Fog" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Edge/visited_mme.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Fog/vector_gen.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -158,8 +156,8 @@
         <item itemvalue="Python.vUser (1)" />
         <item itemvalue="Python.fog_server" />
         <item itemvalue="Python.test" />
+        <item itemvalue="Python.vector_gen" />
         <item itemvalue="Python.ue" />
-        <item itemvalue="Python.visited_mme" />
       </list>
     </recent_temporary>
   </component>

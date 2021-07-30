@@ -1,5 +1,6 @@
 import codecs
 import ctypes
+import random
 
 roundKeys = [[[int(0) for k in range(4)] for j in range(4)] for i in range(11)]
 
@@ -65,6 +66,23 @@ def print_buffer2(key):
             h = "0" + h
         ret += h
     return ret
+
+
+def generate_random():
+    r = 0
+    random_p = [0]*16
+    for i in range(16):
+        if i % 4 == 0:
+            r = random.randrange(0, 32767)
+        shift       = 8 * (i % 4)
+        mask        = 0xFF << shift
+        random_p[i] = (r & mask) >> shift
+
+    print("\nRANDOM ", end=" ")
+    print_buffer(random_p)
+    return random_p
+
+
 
 
 def RijndaelKeySchedule(key):
@@ -299,9 +317,8 @@ def derive_kasme(ck, ik, plmn, sqn, ak, s):
     return key
 
 
-def generate_vector(rrand, rxres):
+def generate_vector(rand, rxres, ak, ck, ik):
     key = [12, 10, 52, 96, 29, 79, 7, 103, 115, 3, 101, 44, 4, 98, 83, 91]
-    rand = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     opc = [186, 5, 104, 129, 120, 227, 152, 190, 220, 16, 6, 116, 7, 16, 2, 203]
 
     sqn = [0, 0, 0, 0, 0, 96]
@@ -310,15 +327,11 @@ def generate_vector(rrand, rxres):
     mac_a = f1(key, opc, rand, sqn, amf)
 
     res = [0] * 8
-    ak = [0] * 6
-    ck = [0] * 16
-    ik = [0] * 16
     key = [12, 10, 52, 96, 29, 79, 7, 103, 115, 3, 101, 44, 4, 98, 83, 91]
-    rand = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     opc = [186, 5, 104, 129, 120, 227, 152, 190, 220, 16, 6, 116, 7, 16, 2, 203]
     plmn = [35, 0, 50, 0]
     s = [0] * 14
-    f2345(key, opc, rrand, rxres, ck, ik, ak)
+    f2345(key, opc, rand, rxres, ck, ik, ak)
 
     rautn = generate_autn(sqn, ak, amf, mac_a)
     return rautn
