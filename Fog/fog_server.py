@@ -1,4 +1,5 @@
 import codecs
+import datetime
 import socket
 from _thread import *
 import threading
@@ -22,6 +23,7 @@ def threaded(c):
     # c.send(st.encode())
     received_login_info = c.recv(1024)
     print(received_login_info)
+    print(datetime.datetime.now())
     # sep_str = received_login_info.split()
     # imsi = sep_str[0]
     # uid = sep_str[1]

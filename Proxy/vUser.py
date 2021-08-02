@@ -26,6 +26,7 @@ def threaded(c):
     received_binary = fogs.recv(1024)
     print("Received Auth. Vector from fog : " + received_binary.decode())
     c.send(received_binary)
+    c.close()
     print("Sent Auth. Response to MME: " + received_binary.decode())
     print_lock.release()
     # close the connection

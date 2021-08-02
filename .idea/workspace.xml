@@ -5,7 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fog/fog_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fog/fog_server.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fog/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fog/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fog/vector_gen.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fog/vector_gen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proxy/vUser.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proxy/vUser.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +45,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
-  <component name="RunManager" selected="Python.test">
+  <component name="RunManager" selected="Python.vUser (1)">
     <configuration name="fog_server" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="FtoE" />
       <option name="INTERPRETER_OPTIONS" value="" />

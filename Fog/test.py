@@ -1,5 +1,7 @@
 import binascii
 import codecs
+import datetime
+
 from vector_gen import RijndaelKeySchedule, f1, f2345, generate_autn, derive_kasme,print_buffer
 import ctypes
 
@@ -37,6 +39,8 @@ for i in range(0, 31, 2):
 
 print("Rand: ")
 print(rand)
+
+print(datetime.datetime.now())
 
 key = [12, 10, 52, 96, 29, 79, 7, 103, 115, 3, 101, 44, 4, 98, 83, 91]
 opc = [186, 5, 104, 129, 120, 227, 152, 190, 220, 16, 6, 116, 7, 16, 2, 203]
