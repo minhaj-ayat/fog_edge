@@ -11,8 +11,17 @@ Run code of master branch
 
 # Running with OAI
 Run code of oai_phase
-1) Clone the repository in a folder
-2) Open the folder in PyCharm
+
+ OAI Core network can be found here : https://github.com/OPENAIRINTERFACE/openair-epc-fed/tree/2021.w06 
+ I have used the 2021.w06 tag of master branch. To install, follow instructions from this page :
+ https://github.com/OPENAIRINTERFACE/openair-epc-fed/blob/2021.w06/docs/DEPLOY_HOME.md
+    
+ OAI RAN (for eNB and UE ) can be found here: https://gitlab.eurecom.fr/oai/openairinterface5g
+ To install and run, see "Where to start" Section of this link. 
+ 
+1) Clone this repository from oai_phase branch.
+2) Open the cloned folder in PyCharm
 3) Run Fog/fog_server.py
 4) Run Proxy/vUser.py
-5) Start OAI and connect a OAI UE, Fog generates auth vector 
+5) Start OAI and connect a OAI UE. Then, Fog generates auth vector 
+    
